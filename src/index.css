@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Poppins", Georgia, serif;
+  --font-display: "Poppins", sans-serif;
+  --font-sans: "Poppins", sans-serif;
+
+  --color-liturgic-maroon: #581c1c;
+  --color-liturgic-gold: #b38f38;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-[#f5efe4] text-[#2c1d1a] antialiased scroll-smooth;
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 4px 6px rgba(181, 140, 48, 0.25));
+  }
+  50% {
+    transform: scale(1.03);
+    filter: drop-shadow(0 12px 20px rgba(181, 140, 48, 0.55));
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s infinite ease-in-out;
+}
+

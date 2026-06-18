@@ -1,0 +1,6 @@
+{
+  "name": "Missa Explicada",
+  "description": "Um guia passo a passo da Santa Missa, do Rito de Entrada à Bênção Final por Padre João.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
