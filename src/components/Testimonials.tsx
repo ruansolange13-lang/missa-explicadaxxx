@@ -1,77 +1,89 @@
-import React from "react";
-import { Star } from "lucide-react";
+import React, { useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Testimonials() {
-  const reviews = [
-    {
-      id: 1,
-      name: "Maria Clara, SP",
-      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop",
-      text: "Depois de ler o ebook, a Missa ganhou um novo significado para mim. Agora participo de forma muito mais consciente!",
-    },
-    {
-      id: 2,
-      name: "João Pedro, MG",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop",
-      text: "Finalmente entendi coisas que sempre tive curiosidade. Recomendo para toda família católica!",
-    },
-    {
-      id: 3,
-      name: "Ana Paula, RJ",
-      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&auto=format&fit=crop",
-      text: "Usei para ensinar meus filhos e eles amaram. Agora vão à Missa com muito mais interesse.",
-    },
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const testimonials = [
+    "https://i.imgur.com/tT5YEqC.png",
+    "https://i.imgur.com/zNO3cho.png",
+    "https://i.imgur.com/GsYOjlO.png",
+    "https://i.imgur.com/0VEJYdq.png",
+    "https://i.imgur.com/zNO3cho.png"
   ];
 
+  const scroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, clientWidth } = scrollContainerRef.current;
+      const scrollAmount = clientWidth * 0.7; // scroll 70% of view
+      scrollContainerRef.current.scrollTo({
+        left: direction === "left" ? scrollLeft - scrollAmount : scrollLeft + scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <section id="testimonials-section" className="bg-[#f2eadc]/40 py-16 px-4 text-center">
-      <div className="max-w-xl mx-auto space-y-10">
+    <section id="testimonials-section" className="bg-[#f5efe4] py-16 px-4 text-center select-none overflow-hidden">
+      <div className="max-w-6xl mx-auto space-y-8 relative">
         
         {/* Title */}
         <div className="space-y-2">
           <h2 className="font-serif text-[26px] sm:text-[32px] font-extrabold text-[#581c1c] leading-tight">
-            O Que Dizem Nossos Leitores
+            Veja o que as pessoas dizem
           </h2>
         </div>
 
-        {/* Reviews Stack - Beautiful vertical list matching screenshot */}
-        <div className="space-y-6 max-w-lg mx-auto">
-          {reviews.map((review) => (
-            <div
-              key={review.id}
-              id={`review-card-${review.id}`}
-              className="bg-white rounded-3xl border border-stone-200/40 p-6 sm:p-8 shadow-md flex flex-col items-center space-y-4"
-            >
-              {/* Centered Avatar */}
-              <img
-                src={review.avatar}
-                alt={review.name}
-                referrerPolicy="no-referrer"
-                loading="lazy"
-                width="64"
-                height="64"
-                className="w-16 h-16 rounded-full object-cover border-2 border-[#b58c30] shadow-md"
-              />
+        {/* Carousel Wrapper */}
+        <div className="relative group max-w-4xl mx-auto">
+          
+          {/* Gradient Fades for Premium Look (as requested in screenshot) */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-[#f5efe4] to-transparent pointer-events-none z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-[#f5efe4] to-transparent pointer-events-none z-10" />
 
-              {/* Gold Stars */}
-              <div className="flex items-center justify-center gap-1">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400 stroke-amber-500 stroke-1" />
-                ))}
+          {/* Navigation Buttons (Desktop only, visible on hover) */}
+          <button
+            onClick={() => scroll("left")}
+            className="absolute left-6 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-[#581c1c] p-3 rounded-full shadow-md hover:scale-110 transition-all cursor-pointer opacity-0 group-hover:opacity-100 hidden md:flex items-center justify-center border border-stone-200"
+            aria-label="Anterior"
+          >
+            <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
+          </button>
+          
+          <button
+            onClick={() => scroll("right")}
+            className="absolute right-6 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-[#581c1c] p-3 rounded-full shadow-md hover:scale-110 transition-all cursor-pointer opacity-0 group-hover:opacity-100 hidden md:flex items-center justify-center border border-stone-200"
+            aria-label="Próximo"
+          >
+            <ChevronRight className="w-5 h-5 stroke-[2.5]" />
+          </button>
+
+          {/* Horizontal Scrollable Container */}
+          <div
+            ref={scrollContainerRef}
+            className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory px-12 sm:px-24 py-4 scroll-smooth"
+          >
+            {testimonials.map((url, idx) => (
+              <div
+                key={idx}
+                className="snap-center shrink-0 w-[180px] sm:w-[220px] aspect-[180/280] rounded-[24px] overflow-hidden shadow-lg border border-stone-200/40 bg-[#1e1e1e] transition-transform duration-300 hover:scale-[1.03] cursor-pointer"
+              >
+                <img
+                  src={url}
+                  alt={`Depoimento ${idx + 1}`}
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                  className="w-full h-full object-cover"
+                />
               </div>
-
-              {/* Quote text */}
-              <p className="text-[#3c2a26] text-xs sm:text-[13.5px] font-medium leading-relaxed italic px-2">
-                "{review.text}"
-              </p>
-
-              {/* Author alignment */}
-              <span className="text-[#581c1c] text-xs font-bold font-serif">
-                - {review.name}
-              </span>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+
+        {/* Small interaction indicator for touch screens */}
+        <p className="text-stone-500/80 text-xs font-semibold block md:hidden">
+          Arraste para o lado para ver mais depoimentos
+        </p>
 
       </div>
     </section>

@@ -124,11 +124,11 @@ export default function OfferCard({ onCtaClick, bundleImgUrl }: OfferCardProps) 
             
             <div className="flex items-baseline justify-center text-[#b58c30] select-none leading-none pt-1">
               <span className="text-2xl sm:text-3xl font-black font-serif pr-1">R$</span>
-              <span className="text-[52px] sm:text-[62px] font-black font-serif tracking-tight">27,00</span>
+              <span className="text-[52px] sm:text-[62px] font-black font-serif tracking-tight">17,00</span>
             </div>
 
             <span className="text-stone-500 font-sans font-bold text-xs sm:text-sm block mt-2">
-              ou em até 3x no cartão
+              Pagamento Único
             </span>
           </div>
 

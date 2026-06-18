@@ -98,8 +98,8 @@ export default function CheckoutModal({ isOpen, onClose, price }: CheckoutModalP
     return v.substring(0, 11);
   };
 
-  const mockPixKey = "00020101021226830014br.gov.bcb.pix2561lojaprodutosoficial.shop/missaexplicada327.005303986540527.005802BR5915MissaExplicada6009SAO%20PAULO62070503***6304D1B5";
-  const mockBoletoBar = "34191.79001 01043.513184 91020.150008 7 93450000002700";
+  const mockPixKey = "00020101021226830014br.gov.bcb.pix2561lojaprodutosoficial.shop/missaexplicada317.005303986540517.005802BR5915MissaExplicada6009SAO%20PAULO62070503***6304D1B5";
+  const mockBoletoBar = "34191.79001 01043.513184 91020.150008 7 93450000001700";
 
   return (
     <div id="checkout-modal-overlay" className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs overflow-y-auto">
@@ -422,7 +422,7 @@ export default function CheckoutModal({ isOpen, onClose, price }: CheckoutModalP
                     className="w-full py-3 bg-liturgic-maroon text-white font-semibold rounded-xl hover:bg-red-950 active:scale-[0.98] transition-all text-xs"
                     disabled={submitting}
                   >
-                    {submitting ? "Finalizando compra..." : "APROVAR PAGAMENTO SIMULADO POR R$ 27,00 ✝"}
+                    {submitting ? "Finalizando compra..." : "APROVAR PAGAMENTO SIMULADO POR R$ 17,00 ✝"}
                   </button>
                 </div>
               )}

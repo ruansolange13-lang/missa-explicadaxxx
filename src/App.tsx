@@ -130,7 +130,7 @@ export default function App() {
       <Footer />
 
       {/* 15. The Full-fidelity Interactive simulation Checkout Modal */}
-      <CheckoutModal isOpen={isCheckoutOpen} onClose={handleCloseCheckout} price="R$ 27,00" />
+      <CheckoutModal isOpen={isCheckoutOpen} onClose={handleCloseCheckout} price="R$ 17,00" />
 
     </div>
   );
