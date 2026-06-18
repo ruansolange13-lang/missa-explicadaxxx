@@ -73,6 +73,9 @@ export default function App() {
       {/* 3. Pain Points checks lists */}
       <PainPoints />
 
+      {/* 9. Reader testimonials comments */}
+      <Testimonials />
+
       {/* 4. Interactive slides carousel of pages */}
       <InteractiveInside onCtaClick={handleScrollToOffer} milagreImgUrl={milagrePaintingImg} />
 
@@ -87,9 +90,6 @@ export default function App() {
 
       {/* 8. Main Offer price tag card & Countdown display */}
       <OfferCard onCtaClick={handleRedirectToCheckoutUrl} bundleImgUrl={bundleMockupImg} />
-
-      {/* 9. Reader testimonials comments */}
-      <Testimonials />
 
       {/* 10. Guarantee Policy security shield */}
       <Guarantee />
