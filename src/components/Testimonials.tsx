@@ -5,11 +5,11 @@ export default function Testimonials() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const testimonials = [
-    "https://i.imgur.com/tT5YEqC.png",
-    "https://i.imgur.com/zNO3cho.png",
-    "https://i.imgur.com/GsYOjlO.png",
-    "https://i.imgur.com/0VEJYdq.png",
-    "https://i.imgur.com/zNO3cho.png"
+    { url: "https://i.imgur.com/tT5YEqC.png", name: "Rafael Rodrigues" },
+    { url: "https://i.imgur.com/zNO3cho.png", name: "Maria Clara" },
+    { url: "https://i.imgur.com/GsYOjlO.png", name: "Thiago Souza" },
+    { url: "https://i.imgur.com/0VEJYdq.png", name: "Ana Beatriz" },
+    { url: "https://i.imgur.com/zNO3cho.png", name: "Lucas Oliveira" }
   ];
 
   const scroll = (direction: "left" | "right") => {
@@ -61,20 +61,27 @@ export default function Testimonials() {
           {/* Horizontal Scrollable Container */}
           <div
             ref={scrollContainerRef}
-            className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory px-12 sm:px-24 py-4 scroll-smooth"
+            className="flex gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory px-12 sm:px-24 py-4 scroll-smooth"
           >
-            {testimonials.map((url, idx) => (
+            {testimonials.map((item, idx) => (
               <div
                 key={idx}
-                className="snap-center shrink-0 w-[180px] sm:w-[220px] aspect-[180/280] rounded-[24px] overflow-hidden shadow-lg border border-stone-200/40 bg-[#1e1e1e] transition-transform duration-300 hover:scale-[1.03] cursor-pointer"
+                className="snap-center shrink-0 w-[220px] sm:w-[270px] aspect-[180/280] rounded-[24px] overflow-hidden shadow-lg border border-stone-200/40 bg-[#1e1e1e] transition-transform duration-300 hover:scale-[1.03] cursor-pointer relative"
               >
                 <img
-                  src={url}
-                  alt={`Depoimento ${idx + 1}`}
+                  src={item.url}
+                  alt={`Depoimento de ${item.name}`}
                   referrerPolicy="no-referrer"
                   loading="lazy"
                   className="w-full h-full object-cover"
                 />
+                
+                {/* Glassmorphic Name Tag Overlay at the bottom */}
+                <div className="absolute bottom-0 left-0 right-0 bg-black/55 backdrop-blur-md py-3 px-4 text-center border-t border-white/10">
+                  <span className="text-white font-sans font-bold text-xs sm:text-sm tracking-wide">
+                    {item.name}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
